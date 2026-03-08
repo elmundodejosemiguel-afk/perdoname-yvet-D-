@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>Para Yvet 🥺</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+padding:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+background:#fff0f3;
+font-family:'Segoe UI',sans-serif;
+text-align:center;
+}
+
+.card{
+background:white;
+padding:20px;
+border-radius:25px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+width:100%;
+max-width:380px;
+}
+
+.img-container{
+width:100%;
+height:250px;
+margin-bottom:15px;
+border-radius:15px;
+overflow:hidden;
+background:#fce4ec;
+}
+
+img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+h1{
+color:#333;
+font-size:1.2rem;
+margin:10px 0;
+}
+
+.explicacion{
+color:#666;
+font-size:0.95rem;
+margin-bottom:20px;
+}
+
+.btns{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+button{
+padding:16px;
+border:none;
+border-radius:14px;
+font-weight:bold;
+font-size:1rem;
+cursor:pointer;
+transition:0.2s;
+}
+
+button:active{
+transform:scale(0.95);
+}
+
+#btn-si{
+background:#ff4d6d;
+color:white;
+}
+
+#btn-no{
+background:#f1f1f1;
+color:#888;
+}
+
+/* Ajustes extra para pantallas pequeñas */
+
+@media (max-width:400px){
+
+.card{
+padding:18px;
+}
+
+.img-container{
+height:220px;
+}
+
+h1{
+font-size:1.1rem;
+}
+
+button{
+font-size:0.95rem;
+padding:15px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="card" id="contenedor">
+
+<div class="img-container">
+<img id="gato-img" src="https://cataas.com/cat/sad?width=400">
+</div>
+
+<h1 id="titulo">¿Yvet, me perdonas? 🥺</h1>
+
+<p class="explicacion" id="mensaje">
+Fue mi mamá, ella te eliminó cuando me revisó el cel... ¡Eres mi mejor amiga! 😭
+</p>
+
+<div class="btns">
+<button id="btn-si">Sí, te perdono ✨</button>
+<button id="btn-no">No, sigo enojada</button>
+</div>
+
+</div>
+
+<script>
+
+const btnNo = document.getElementById('btn-no');
+const btnSi = document.getElementById('btn-si');
+const img = document.getElementById('gato-img');
+const titulo = document.getElementById('titulo');
+const mensaje = document.getElementById('mensaje');
+
+const fotosGatos = [
+
+"https://cataas.com/cat/sad?width=400",
+"https://cataas.com/cat/cry?width=400",
+"https://cataas.com/cat?width=400&height=300&text=crying",
+"https://cataas.com/cat?width=400&height=300&text=sad",
+"https://cataas.com/cat?width=400&height=300&text=please"
+
+];
+
+const frasesNo = [
+
+"¿Segura? Mira mis ojitos 😿",
+"¡Te juro que fue mi mamá!",
+"¡Perdóname por favor!",
+"Estoy llorando 😭",
+"No me ignores Yvet 🥺",
+"Voy a llorar más fuerte..."
+
+];
+
+let contador = 0;
+
+btnNo.addEventListener('click', () => {
+
+img.src = fotosGatos[contador % fotosGatos.length] + "&t=" + new Date().getTime();
+
+titulo.innerText = frasesNo[contador % frasesNo.length];
+
+mensaje.innerText = "¡Te buscaré en mi otra cuenta!";
+
+let currentSize = parseFloat(window.getComputedStyle(btnSi).fontSize);
+
+btnSi.style.fontSize = (currentSize + 4) + "px";
+
+contador++;
+
+});
+
+btnSi.addEventListener('click', () => {
+
+document.getElementById('contenedor').innerHTML = `
+
+<div class="img-container">
+<img src="https://cataas.com/cat/cute?width=400">
+</div>
+
+<h1 style="color:#ff4d6d">¡SÍII! GRACIAS ❤️</h1>
+
+<p style="color:#666">Sabía que me perdonarías 😭✨</p>
+
+`;
+
+});
+
+</script>
+
+</body>
+</html>
